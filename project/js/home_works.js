@@ -18,22 +18,80 @@ gmailButton.onclick = () => {
 
 // homework 1.2
 
+// const parentBlock = document.querySelector('.parent_block')
+// const childBlock = document.querySelector('.child_block')
+
+// let position = 0;
+
+// parentBlock.style.position = 'relative';
+// childBlock.style.position = 'absolute';
+
+// function move() {
+//     if (position >= 448) {
+//         return;
+//     }
+//     position += 1;
+//     childBlock.style.left = `${position}px`
+
+//     requestAnimationFrame(move)
+// }
+
+// move()
+
 const parentBlock = document.querySelector('.parent_block')
 const childBlock = document.querySelector('.child_block')
 
-let position = 0;
+let positionX = 0
+let positionY = 0
 
-parentBlock.style.position = 'relative';
-childBlock.style.position = 'absolute';
+const maxWidth = parentBlock.clientWidth - childBlock.offsetWidth
+const maxHeight = parentBlock.clientHeight - childBlock.offsetHeight
 
-function move() {
-    if (position >= 449) {
-        return;
+const move = () => {
+    childBlock.style.left = `${positionX}px`
+    childBlock.style.top = `${positionY}px`
+
+    if (positionX < maxWidth && positionY === 0) {
+        positionX++
+    } else if (positionX >= maxWidth && positionY < maxHeight) {
+        positionY++
+    } else if (positionY >= maxHeight && positionX > 0) {
+        positionX--
+    } else if (positionX <= 0 && positionY > 0) {
+        positionY--
     }
-    position += 1;
-    childBlock.style.left = `${position}px`
 
     requestAnimationFrame(move)
-}
 
+}
 move()
+
+
+const seconds = document.querySelector('#seconds');
+const startButton = document.querySelector('#start');
+const stopButton = document.querySelector('#stop');
+const resetButton = document.querySelector('#reset');
+
+let count = 0;
+let interval = null;
+
+startButton.onclick = () => {
+    if (interval === null) {
+        interval = setInterval(() => {
+            count++;
+            seconds.textContent = count;
+        }, 1000);
+    }
+};
+
+stopButton.onclick = () => {
+    clearInterval(interval);
+    interval = null;
+};
+
+resetButton.onclick = () => {
+    clearInterval(interval);
+    interval = null;
+    count = 0;
+    seconds.textContent = count;
+};
