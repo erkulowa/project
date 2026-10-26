@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Seong Gi-hun",
+    "number": "456",
+    "photo": "../images/456.webp"
+  },
+  {
+    "name": "Kang Sae-byeok",
+    "number": "067",
+    "photo": "../images/067.webp"
+  },
+  {
+    "name": "Cho Sang-woo",
+    "number": "218",
+    "photo": "../images/218.webp"
+  }
+]
+

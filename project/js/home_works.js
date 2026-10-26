@@ -95,3 +95,45 @@ resetButton.onclick = () => {
     count = 0;
     seconds.textContent = count;
 };
+
+
+// Squid Game Characters
+
+const charactersList = document.querySelector('.characters-list');
+
+const xhr = new XMLHttpRequest();
+
+xhr.open('GET', '../data/characters.json');
+
+xhr.send();
+
+xhr.onload = function () {
+    console.log(xhr.status);
+
+    if (xhr.status === 200) {
+        const characters = JSON.parse(xhr.response);
+
+        characters.forEach((character) => {
+            charactersList.innerHTML += `
+                <div class="character-card">
+                    <img src="${character.photo}" alt="${character.name}">
+                    <h3>${character.name}</h3>
+                    <p>Player ${character.number}</p>
+                </div>
+            `;
+        });
+    }
+};
+
+
+const xhr2 = new XMLHttpRequest();
+
+xhr2.open('GET', '../data/any.json');
+
+xhr2.send();
+
+xhr2.onload = function () {
+    const data = JSON.parse(xhr2.response);
+
+    console.log(data);
+};
