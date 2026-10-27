@@ -64,3 +64,76 @@ setInterval (() => {
     hideTabContent()
     showTabContent(currentIndex)
 }, 5000)
+
+// converter 
+
+const usdInput = document.querySelector('#usd')
+const somInput = document.querySelector('#som')
+const eurInput = document.querySelector('#eur')
+
+const getCurrency = (element, target, another) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', '../data/converter.json')
+    xhr.setRequestHeader('Content-type', 'application/json')
+    xhr.send()
+
+    xhr.onload = () => {
+        const data = JSON.parse(xhr.response)
+        element.oninput = () => {
+            if (element.id === 'som') {
+                target.value = (element.value / data.usd).toFixed(2)
+                another.value = (element.value / data.eur).toFixed(2)
+            }
+            if (element.id === 'usd') {
+                target.value = (element.value * data.usd).toFixed(2)
+                another.value = (element.value / data.eur).toFixed(2)
+            }
+            if (element.id === 'eur') {
+                target.value = (element.value * data.usd).toFixed(2)
+                another.value = (element.value / data.eur).toFixed(2);
+            }
+            if (element.value === '') {
+                target.value = ''
+                another.value = ''
+            }
+        }
+    }
+}
+
+getCurrency(somInput, usdInput, eurInput);
+getCurrency(usdInput, somInput, eurInput);
+getCurrency(eurInput, somInput, usdInput);
+
+
+// getCurrency(somInput, usdInput)
+// getCurrency(usdInput, somInput)
+
+
+// somInput.oninput = () => {
+//     const xhr = new XMLHttpRequest()
+//     xhr.open('GET', '../data/converter.json')
+//     xhr.setRequestHeader('Content-type', 'application/json')
+//     xhr.send()
+
+//     xhr.onload = () => {
+//         const data = JSON.parse(xhr.response)
+//         usdInput.value = (somInput.value / data.usd).toFixed(2)
+//     }
+// }
+
+// usdInput.oninput = () => {
+//     const xhr = new XMLHttpRequest()
+//     xhr.open('GET', '../data/converter.json')
+//     xhr.setRequestHeader('Content-type', 'application/json')
+//     xhr.send()
+
+//     xhr.onload = () => {
+//         const data = JSON.parse(xhr.response)
+//         somInput.value = (usdInput.value * data.usd).toFixed(2)
+//     }
+// }
+
+// DRY - don't repeat yourself
+// KISS - keep it simple, stupid
+// KISS - keep it super simple
+// BEM - meaningful class name
