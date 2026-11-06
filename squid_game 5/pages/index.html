@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Game Room | Squid Game</title>
+
+		<script src="../js/guard.js"></script>
+
+		<link rel="stylesheet" href="../css/common.css" />
+		<link rel="stylesheet" href="../css/home.css" />
+		<script src="../js/common.js" defer></script>
+		<script src="../js/home.js" defer></script>
+	</head>
+	<body>
+		<main class="room">
+			<!-- LOGO AND PLAYER NUMBER -->
+			<header class="topbar">
+				<a href="index.html" class="logo">
+					<img src="../images/logowhite.png" alt="SQUID GAME" />
+				</a>
+				<p class="player-badge" id="playerBadge"></p>
+			</header>
+
+			<!-- WALL -->
+			<section class="wall">
+				<h1 class="welcome">WELCOME<br />TO THE GAME</h1>
+
+				<nav class="doors" aria-label="Game room">
+					<a href="players.html" class="door">
+						<span class="door-panel">
+							<svg class="door-symbol" viewBox="0 0 100 100" aria-hidden="true">
+								<circle cx="50" cy="50" r="38" />
+							</svg>
+						</span>
+						<span class="door-label">PLAYERS</span>
+					</a>
+
+					<a href="games.html" class="door">
+						<span class="door-panel">
+							<svg class="door-symbol" viewBox="0 0 100 100" aria-hidden="true">
+								<path d="M50 12 L92 86 L8 86 Z" />
+							</svg>
+						</span>
+						<span class="door-label">THE GAMES</span>
+					</a>
+
+					<a href="vote.html" class="door">
+						<span class="door-panel">
+							<svg class="door-symbol" viewBox="0 0 100 100" aria-hidden="true">
+								<rect x="14" y="14" width="72" height="72" />
+							</svg>
+						</span>
+						<span class="door-label">THE VOTE</span>
+					</a>
+				</nav>
+			</section>
+
+			<!-- FLOOR -->
+			<section class="floor">
+				<div class="crowd" id="crowd" aria-hidden="true"></div>
+
+				<div class="room-stats">
+					<div class="stat">
+						<span class="stat-label">PLAYERS</span>
+						<span class="stat-value"
+							><span id="playerCount">0</span> / 456</span
+						>
+					</div>
+					<div class="stat">
+						<span class="stat-label">YOUR STATUS</span>
+						<span class="stat-value" id="playerStatus"></span>
+					</div>
+				</div>
+
+				<!-- HOST -->
+				<div class="host">
+					<p class="host-speech" id="hostSpeech"></p>
+
+					<svg
+						class="host-robot"
+						viewBox="0 0 140 220"
+						role="img"
+						aria-label="Pink robot host"
+					>
+						<ellipse cx="70" cy="212" rx="48" ry="7" fill="#00000055" />
+						<rect x="42" y="165" width="20" height="44" rx="9" fill="#d94a8e" />
+						<rect x="78" y="165" width="20" height="44" rx="9" fill="#d94a8e" />
+						<rect x="10" y="98" width="17" height="56" rx="8" fill="#ffa6cf" />
+						<g class="host-arm">
+							<rect
+								x="113"
+								y="60"
+								width="17"
+								height="56"
+								rx="8"
+								fill="#ffa6cf"
+							/>
+							<circle cx="121.500" cy="56" r="11" fill="#ffd6e8" />
+						</g>
+						<rect x="24" y="90" width="92" height="88" rx="30" fill="#ffc2dc" />
+						<circle
+							cx="70"
+							cy="130"
+							r="17"
+							fill="none"
+							stroke="#c9206f"
+							stroke-width="5"
+						/>
+						<rect x="28" y="16" width="84" height="72" rx="30" fill="#ffd6e8" />
+						<rect x="38" y="36" width="64" height="26" rx="13" fill="#17101c" />
+						<circle class="host-eye" cx="56" cy="49" r="6" fill="#8ffff0" />
+						<circle class="host-eye" cx="84" cy="49" r="6" fill="#8ffff0" />
+						<rect x="66" y="3" width="8" height="15" rx="4" fill="#d94a8e" />
+					</svg>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

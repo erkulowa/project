@@ -1,0 +1,524 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #08090c;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    background: #08090c url("../images/recruiter.png") center center / cover no-repeat;
+}
+
+.scene::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+            180deg,
+            #00000012 20%,
+            #00000035 50%,
+            #000000d9 100%
+    );
+}
+
+/* INTRO */
+
+.intro {
+    position: absolute;
+    z-index: 1;
+    bottom: 9%;
+    left: 20px;
+    right: 20px;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+
+.intro p {
+    max-width: 650px;
+    margin: 0 auto 28px;
+    font-size: clamp(20px, 3vw, 30px);
+    line-height: 1.5;
+    text-shadow: 0 3px 15px #000;
+}
+
+.intro button {
+    min-width: 145px;
+    padding: 15px 30px;
+    color: white;
+    background: #ed174c;
+    border: none;
+    font-size: 13px;
+    letter-spacing: 4px;
+    transition: 0.3s;
+}
+
+.intro button:hover {
+    background: #ff3867;
+    transform: scale(1.05);
+}
+
+/* GAME */
+
+.game,
+.result,
+.invitation {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    text-align: center;
+    background: #08090ce8;
+    animation: fadeIn 0.8s ease;
+}
+
+.attempt {
+    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #ffffffb0;
+}
+
+.score {
+    margin-bottom: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.play-area {
+    position: relative;
+    width: 330px;
+    height: 310px;
+    max-width: 100%;
+    overflow: hidden;
+    perspective: 900px;
+    background: radial-gradient(ellipse, #25232a, #101014 70%);
+}
+
+.ttakji {
+    position: absolute;
+    width: 145px;
+    height: 145px;
+    transform-style: preserve-3d;
+}
+
+.blue {
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%) rotate(4deg);
+    background: linear-gradient(135deg, #2499ff, #0061ce);
+    box-shadow: 0 8px 0 #064b96, 0 15px 25px #0009;
+}
+
+.red {
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-7deg);
+    background: linear-gradient(135deg, #ff334e, #cf0028);
+    box-shadow: 0 8px 0 #97051e, 0 15px 25px #0009;
+}
+
+/* FOLDED PAPER */
+
+.fold {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.fold-one {
+    background: linear-gradient(
+            45deg,
+            transparent 49%,
+            #66001470 49.5%,
+            #ffffffa0 50%,
+            transparent 51%
+    );
+}
+
+.fold-two {
+    background: linear-gradient(
+            -45deg,
+            transparent 49%,
+            #66001470 49.5%,
+            #ffffffa0 50%,
+            transparent 51%
+    );
+}
+
+.fold-three {
+    background: linear-gradient(135deg, #ffffff45, transparent 35%);
+}
+
+.fold-four {
+    background: linear-gradient(315deg, #0003, transparent 35%);
+}
+
+/* THROW AND SHAKE */
+
+.play-area.shake {
+    animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px) rotate(-1deg); }
+    40% { transform: translateX(8px) rotate(1deg); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+}
+
+.red.throw {
+    animation: throw 0.65s ease-in forwards;
+}
+
+@keyframes throw {
+    0% {
+        bottom: 12px;
+        transform: translateX(-50%) rotate(-7deg) scale(1);
+    }
+
+    45% {
+        bottom: 120px;
+        transform: translateX(-50%) rotate(160deg) scale(1.12);
+    }
+
+    100% {
+        bottom: 120px;
+        transform: translateX(-50%) rotate(360deg) scale(0.9);
+    }
+}
+
+.blue.flipped {
+    animation: flipBlue 0.8s ease-in-out forwards;
+}
+
+@keyframes flipBlue {
+    0% {
+        transform: translateX(-50%) rotate(4deg) rotateX(0);
+    }
+
+    50% {
+        transform: translate(-50%, -25px) rotate(180deg) rotateX(180deg);
+    }
+
+    100% {
+        transform: translateX(-50%) rotate(360deg) rotateX(360deg);
+    }
+}
+
+.impact {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    z-index: 3;
+    color: white;
+    font-size: 38px;
+    font-weight: 700;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3);
+    pointer-events: none;
+}
+
+.impact.show {
+    animation: impact 0.6s ease;
+}
+
+@keyframes impact {
+    35% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.8);
+    }
+}
+
+.game-message {
+    min-height: 24px;
+    margin: 20px 0;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #ffffffc9;
+}
+
+.action-button {
+    padding: 15px 25px;
+    color: white;
+    background: #ed174c;
+    border: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.action-button:hover {
+    background: #ff3867;
+    transform: translateY(-2px);
+}
+
+.action-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* RESULT */
+
+.result h1 {
+    margin-bottom: 18px;
+    font-size: clamp(32px, 7vw, 58px);
+    letter-spacing: 4px;
+}
+
+.result p {
+    margin-bottom: 30px;
+    font-size: 13px;
+    color: #ffffffb0;
+    line-height: 1.8;
+}
+
+.result.win h1 {
+    color: #d9ffb0;
+    text-shadow: 0 0 30px #a9ff6855;
+}
+
+.result.lose h1 {
+    color: #ff365b;
+    text-shadow: 0 0 30px #ff174455;
+}
+
+/* GOLDEN CARD */
+
+.invitation {
+    background: radial-gradient(ellipse, #393126, #111014 65%, #08090c);
+}
+
+.card-scene {
+    width: 360px;
+    height: 225px;
+    max-width: 90vw;
+    perspective: 1200px;
+    animation: cardArrival 1.3s ease both;
+}
+
+.gold-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(.2, .7, .2, 1);
+    cursor: pointer;
+}
+
+.gold-card.open {
+    transform: rotateY(180deg);
+}
+
+.card-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    backface-visibility: hidden;
+    border: 2px solid #f5d98e;
+    background:
+            linear-gradient(120deg, transparent 25%, #ffffff45 42%, transparent 55%),
+            linear-gradient(135deg, #f7df9b, #bd8b38 48%, #f2d17c 72%, #a8752c);
+    box-shadow:
+            0 0 0 3px #8f682b,
+            0 25px 70px #000b,
+            inset 0 0 30px #fff5c733;
+}
+
+.card-face::before {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid #fff1c580;
+    pointer-events: none;
+}
+
+.symbols {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    color: #49351d;
+}
+
+.symbols span {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 43px;
+    font-weight: 400;
+    line-height: 1;
+    text-shadow: 0 1px 1px #fff6c2;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card-back p {
+    color: #49351d;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(19px, 5vw, 27px);
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+/* CODE FORM */
+
+.code-form {
+    width: min(90%, 360px);
+    margin-top: 55px;
+    animation: fadeIn 1s 0.5s both;
+}
+
+.code-form label {
+    display: block;
+    margin-bottom: 18px;
+    font-size: 11px;
+    line-height: 1.8;
+    color: #ffffffc9;
+}
+
+.input-row {
+    display: flex;
+    border-bottom: 1px solid #ffffff70;
+}
+
+.input-row input {
+    width: 100%;
+    min-width: 0;
+    padding: 14px 5px;
+    color: white;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    letter-spacing: 3px;
+}
+
+.input-row input::placeholder {
+    color: #ffffff50;
+}
+
+.input-row button {
+    width: 45px;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 25px;
+}
+
+#codeMessage {
+    min-height: 20px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+#codeMessage.error {
+    color: #ff365b;
+}
+
+#codeMessage.success {
+    color: #8cff9b;
+}
+
+/* ANIMATIONS */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes cardArrival {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.5) rotateX(25deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+    .intro {
+        bottom: 7%;
+    }
+
+    .intro p {
+        font-size: 20px;
+    }
+
+    .play-area {
+        width: 300px;
+        height: 290px;
+    }
+
+    .ttakji {
+        width: 130px;
+        height: 130px;
+    }
+
+    .card-scene {
+        width: 310px;
+        height: 195px;
+    }
+
+    .symbols {
+        gap: 19px;
+    }
+
+    .symbols span {
+        width: 43px;
+        height: 43px;
+        font-size: 38px;
+    }
+
+    .code-form {
+        margin-top: 40px;
+    }
+}

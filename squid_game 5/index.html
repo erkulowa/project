@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Squid Game</title>
+    <script>
+        window.location.replace(
+            localStorage.getItem('playerNumber')
+                ? 'pages/index.html'
+                : 'pages/invitation.html'
+        );
+    </script>
+</head>
+<body></body>
+</html>

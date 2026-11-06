@@ -1,0 +1,267 @@
+body {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    background: radial-gradient(ellipse at 50% 30%, #2a2332 0%, #0d0b10 55%, #030304 100%);
+}
+
+.vote {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 30px;
+    text-align: center;
+}
+
+.vote-title {
+    font-size: clamp(30px, 6vw, 60px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-shadow: 0 0 35px #f2d17c55;
+}
+
+.vote-text {
+    margin: 10px 0 15px;
+    max-width: 620px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #ffffffd9;
+}
+
+/* PIGGY BANK */
+
+.pig-stage {
+    position: relative;
+    width: min(100%, 52vh * 1.49, 560px);
+    transition: filter 1.5s;
+}
+
+.pig {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 45px #ff4a9b35);
+}
+
+.pig-stage.shake {
+    animation: pigShake 0.25s ease;
+}
+
+.pig-money {
+    transform: translateY(212px);
+    transition: transform 0.4s ease;
+}
+
+.pig-floor {
+    height: 16px;
+    margin: -8px 7% 0;
+    border-radius: 50%;
+    background: #000000b0;
+}
+
+/* COUNTERS */
+
+.tally {
+    display: grid;
+    grid-template-columns: 110px 1fr 110px;
+    align-items: center;
+    gap: 16px;
+    width: min(100%, 640px);
+    margin: 18px 0 20px;
+}
+
+.tally-side {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tally-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.tally-number {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.continue-side .tally-number {
+    color: var(--mint);
+}
+
+.stop-side .tally-number {
+    color: var(--pink-light);
+}
+
+.tally-bar {
+    display: flex;
+    height: 14px;
+    overflow: hidden;
+    border: 1px solid #ffffff40;
+    background: #ffffff10;
+}
+
+.bar-continue,
+.bar-stop {
+    display: block;
+    width: 0;
+    transition: width 0.25s;
+}
+
+.bar-continue {
+    background: var(--mint);
+}
+
+.bar-stop {
+    margin-left: auto;
+    background: var(--pink);
+}
+
+/* BUTTONS */
+
+.vote-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+}
+
+.vote-button {
+    min-width: 200px;
+    padding: 20px 30px;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    transition: 0.25s;
+}
+
+.continue-button {
+    border: 2px solid var(--mint);
+    color: var(--mint);
+}
+
+.continue-button:hover {
+    background: var(--mint);
+    color: #06332f;
+    box-shadow: 0 0 35px #8ffff066;
+}
+
+.stop-button {
+    border: 2px solid var(--pink-light);
+    color: var(--pink-light);
+}
+
+.stop-button:hover {
+    background: var(--pink);
+    color: white;
+    box-shadow: 0 0 35px #ed176566;
+}
+
+.vote-progress {
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+/* RESULT STATES */
+
+.vote.continue-won .vote-title {
+    color: var(--mint);
+    text-shadow: 0 0 35px #5effe680;
+}
+
+.vote.continue-won .pig {
+    filter: drop-shadow(0 0 70px #f2d17cb0);
+}
+
+.vote.stop-won .vote-title {
+    color: #ff365b;
+    text-shadow: 0 0 35px #ff174466;
+}
+
+.vote.stop-won .pig-stage {
+    filter: grayscale(1) brightness(0.45);
+}
+
+body:has(.vote.stop-won) {
+    background: #030304;
+}
+
+/* FALLING MONEY */
+
+.coins {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.coin {
+    position: absolute;
+    top: -40px;
+    width: 26px;
+    height: 26px;
+    border: 2px solid #8f682b;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff1c0, #f2d17c 45%, #b98523);
+    animation: coinFall var(--fall-time) ease-in forwards;
+}
+
+.coin.bill {
+    width: 44px;
+    height: 22px;
+    border: 1px solid #0b5e55;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #0fa58f, #8ffff0 50%, #0fa58f);
+}
+
+/* ANIMATIONS */
+
+@keyframes coinFall {
+    to {
+        transform: translate(var(--drift), 105vh) rotate(var(--spin));
+    }
+}
+
+@keyframes pigShake {
+    0%, 100% { transform: rotate(0); }
+    30% { transform: rotate(-0.8deg) translateY(2px); }
+    70% { transform: rotate(0.8deg); }
+}
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+    .tally {
+        grid-template-columns: 82px 1fr 82px;
+        gap: 8px;
+    }
+
+    .tally-number {
+        font-size: 26px;
+    }
+
+    .tally-label {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .vote-buttons {
+        width: 100%;
+    }
+
+    .vote-button {
+        flex: 1;
+        min-width: 130px;
+        padding: 18px 10px;
+        font-size: 13px;
+    }
+}

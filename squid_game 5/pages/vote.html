@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Vote | Squid Game</title>
+
+    <script src="../js/guard.js"></script>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/vote.css">
+    <script src="../js/common.js" defer></script>
+    <script src="../js/vote.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+    <a href="index.html" class="logo">
+        <img src="../images/logowhite.png" alt="SQUID GAME">
+    </a>
+    <div class="topbar-right">
+        <a href="index.html" class="back-link">← GAME ROOM</a>
+        <p class="player-badge" id="playerBadge"></p>
+    </div>
+</header>
+
+<main class="vote" id="votePage">
+
+    <h1 class="vote-title" id="voteTitle">THE VOTE</h1>
+    <p class="vote-text" id="voteText">Should the game continue?</p>
+
+    <!-- PIGGY BANK -->
+    <div class="pig-stage" id="pigStage">
+        <svg class="pig" viewBox="0 0 520 350" role="img" aria-label="Giant piggy bank full of money">
+            <defs>
+                <clipPath id="pigBody">
+                    <ellipse cx="250" cy="170" rx="190" ry="125"/>
+                </clipPath>
+                <pattern id="coinPattern" width="44" height="30" patternUnits="userSpaceOnUse">
+                    <rect width="44" height="30" fill="#b98523"/>
+                    <circle cx="12" cy="9" r="11" fill="#f2d17c" stroke="#8f682b" stroke-width="2"/>
+                    <circle cx="34" cy="24" r="11" fill="#ffe7a3" stroke="#8f682b" stroke-width="2"/>
+                </pattern>
+            </defs>
+
+            <rect x="110" y="270" width="52" height="66" rx="14" fill="#a81a5e"/>
+            <rect x="325" y="270" width="52" height="66" rx="14" fill="#a81a5e"/>
+            <path d="M62 150 C25 130 25 92 52 94 C72 96 62 124 40 116" fill="none" stroke="#ff7fb5" stroke-width="10" stroke-linecap="round"/>
+            <path d="M298 60 C306 22 340 6 372 14 C380 46 372 74 348 92 Z" fill="#ff7fb5"/>
+
+            <ellipse cx="250" cy="170" rx="190" ry="125" fill="#ff4a9b30"/>
+
+            <g clip-path="url(#pigBody)">
+                <rect class="pig-money" id="pigMoney" x="50" y="45" width="400" height="250" fill="url(#coinPattern)"/>
+            </g>
+
+            <ellipse cx="250" cy="170" rx="190" ry="125" fill="none" stroke="#ff9cc8" stroke-width="9"/>
+            <path d="M125 95 C150 70 190 62 225 62" fill="none" stroke="#ffffff90" stroke-width="9" stroke-linecap="round"/>
+
+            <rect x="405" y="120" width="82" height="86" rx="32" fill="#ff7fb5" stroke="#ff9cc8" stroke-width="6"/>
+            <circle cx="434" cy="163" r="8" fill="#6d0d3c"/>
+            <circle cx="462" cy="163" r="8" fill="#6d0d3c"/>
+            <circle cx="365" cy="112" r="11" fill="#17101c"/>
+            <rect x="185" y="36" width="115" height="13" rx="6" fill="#17101c"/>
+        </svg>
+        <div class="pig-floor"></div>
+    </div>
+
+    <!-- COUNTERS -->
+    <div class="tally">
+        <div class="tally-side continue-side">
+            <span class="tally-label">CONTINUE</span>
+            <span class="tally-number" id="continueCount">0</span>
+        </div>
+
+        <div class="tally-bar">
+            <span class="bar-continue" id="barContinue"></span>
+            <span class="bar-stop" id="barStop"></span>
+        </div>
+
+        <div class="tally-side stop-side">
+            <span class="tally-label">STOP</span>
+            <span class="tally-number" id="stopCount">0</span>
+        </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="vote-buttons" id="voteButtons">
+        <button class="vote-button continue-button" id="continueButton">CONTINUE</button>
+        <button class="vote-button stop-button" id="stopButton">STOP</button>
+    </div>
+
+    <p class="vote-progress hidden" id="voteProgress"></p>
+
+    <!-- RESULT BUTTONS -->
+    <button class="action-button hidden" id="nextButton">NEXT TRIAL</button>
+    <button class="action-button ghost hidden" id="leaveButton">LEAVE THE GAME</button>
+
+</main>
+
+<div class="coins" id="coins" aria-hidden="true"></div>
+
+</body>
+</html>

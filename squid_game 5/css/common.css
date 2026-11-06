@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;900&display=swap');
+
+/* SHARED STYLES FOR HOME, THE GAMES AND THE VOTE */
+
+:root {
+    --bg: #08090c;
+    --panel: #120d15;
+    --pink: #ed1765;
+    --pink-light: #ff4a9b;
+    --mint: #8ffff0;
+    --green: #0b8f7c;
+    --gold: #f2d17c;
+    --muted: #ffffffb0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: var(--bg);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    color: white;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: 2px solid var(--mint);
+    outline-offset: 3px;
+}
+
+/* TOP BAR */
+
+.topbar {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 18px 35px;
+}
+
+.logo img {
+    display: block;
+    width: 150px;
+    height: auto;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.back-link {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: white;
+}
+
+.player-badge {
+    padding: 10px 14px;
+    border: 1px solid var(--mint);
+    background: #08090cb0;
+    color: var(--mint);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+/* BUTTONS */
+
+.action-button {
+    padding: 16px 28px;
+    border: 1px solid var(--pink-light);
+    background: var(--pink);
+    font-size: 13px;
+    letter-spacing: 2px;
+    transition: 0.25s;
+}
+
+.action-button:hover {
+    background: #ff347d;
+    transform: translateY(-2px);
+}
+
+.action-button.ghost {
+    background: transparent;
+}
+
+.action-button.ghost:hover {
+    background: var(--pink);
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    .topbar {
+        padding: 14px 16px;
+    }
+
+    .logo img {
+        width: 105px;
+    }
+
+    .topbar-right {
+        gap: 12px;
+    }
+
+    .back-link {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .player-badge {
+        padding: 8px 10px;
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 420px) {
+    .back-link {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

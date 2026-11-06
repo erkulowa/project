@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Games | Squid Game</title>
+
+    <script src="../js/guard.js"></script>
+
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/games.css">
+    <script src="../js/common.js" defer></script>
+    <script src="../js/games.js" defer></script>
+</head>
+<body>
+
+<header class="topbar">
+    <a href="index.html" class="logo">
+        <img src="../images/logowhite.png" alt="SQUID GAME">
+    </a>
+    <div class="topbar-right">
+        <a href="index.html" class="back-link">← GAME ROOM</a>
+        <p class="player-badge" id="playerBadge"></p>
+    </div>
+</header>
+
+<main class="games">
+
+    <!-- CHOOSE A GAME -->
+    <section class="screen" id="menu">
+        <h1 class="games-title">THE GAMES</h1>
+        <p class="games-text">Clear both trials to reach the vote.</p>
+
+        <div class="game-cards">
+            <button class="game-card" id="lightCard">
+                <svg class="card-symbol" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="38"/></svg>
+                <span class="card-name">RED LIGHT, GREEN LIGHT</span>
+                <span class="card-state" id="lightState">NOT CLEARED</span>
+            </button>
+
+            <button class="game-card" id="mazeCard">
+                <svg class="card-symbol" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12 L92 86 L8 86 Z"/></svg>
+                <span class="card-name">MAZE ESCAPE</span>
+                <span class="card-state" id="mazeState">NOT CLEARED</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- RED LIGHT START -->
+    <section class="screen hidden" id="lightStart">
+        <h1 class="games-title">RED LIGHT, GREEN LIGHT</h1>
+        <ul class="rules">
+            <li>Move only on green.</li>
+            <li>Stop before the Watcher turns red.</li>
+            <li>Cross the finish line in 30 seconds.</li>
+            <li>Hold SPACE, the up arrow or the MOVE button.</li>
+        </ul>
+        <div class="screen-buttons">
+            <button class="action-button ghost" data-menu>BACK</button>
+            <button class="action-button" id="lightStartButton">START</button>
+        </div>
+    </section>
+
+    <!-- RED LIGHT GAME -->
+    <section class="screen hidden" id="lightPlay">
+        <div class="hud">
+            <span id="lightSignal" class="signal">GREEN LIGHT</span>
+            <span id="lightTimer">30.0</span>
+        </div>
+
+        <div class="track" id="track">
+            <div class="finish-line"><span>FINISH</span></div>
+
+            <div class="watcher" id="watcher">
+                <div class="watcher-head">
+                    <span class="watcher-eye"></span>
+                </div>
+                <div class="watcher-body"></div>
+            </div>
+
+            <div class="runner" id="runner">
+                <span class="runner-head"></span>
+                <span class="runner-body"></span>
+            </div>
+        </div>
+
+        <button class="move-button" id="moveButton">HOLD TO MOVE</button>
+    </section>
+
+    <!-- MAZE START -->
+    <section class="screen hidden" id="mazeStart">
+        <h1 class="games-title">MAZE ESCAPE</h1>
+        <ul class="rules">
+            <li>You can only see the walls near you.</li>
+            <li>Find the golden exit.</li>
+            <li>You have 60 seconds.</li>
+            <li>Move with the arrow keys or the on-screen buttons.</li>
+        </ul>
+        <div class="screen-buttons">
+            <button class="action-button ghost" data-menu>BACK</button>
+            <button class="action-button" id="mazeStartButton">START</button>
+        </div>
+    </section>
+
+    <!-- MAZE GAME -->
+    <section class="screen hidden" id="mazePlay">
+        <div class="hud">
+            <span class="signal">FIND THE EXIT</span>
+            <span id="mazeTimer">60</span>
+        </div>
+
+        <canvas class="maze" id="maze"></canvas>
+
+        <div class="maze-controls">
+            <button data-dx="0" data-dy="-1" aria-label="Up">▲</button>
+            <button data-dx="-1" data-dy="0" aria-label="Left">◀</button>
+            <button data-dx="0" data-dy="1" aria-label="Down">▼</button>
+            <button data-dx="1" data-dy="0" aria-label="Right">▶</button>
+        </div>
+    </section>
+
+    <!-- RESULT -->
+    <section class="screen hidden" id="resultScreen">
+        <h1 class="result-title" id="resultTitle"></h1>
+        <p class="games-text" id="resultText"></p>
+        <div class="screen-buttons">
+            <button class="action-button ghost" data-menu>ALL GAMES</button>
+            <button class="action-button" id="retryButton">TRY AGAIN</button>
+            <a class="action-button hidden" id="voteLink" href="vote.html">GO TO THE VOTE</a>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Players | Squid Game</title>
+
+    <script src="../js/guard.js"></script>
+
+    <link rel="stylesheet" href="../css/players.css">
+    <script src="../js/players.js" defer></script>
+</head>
+<body>
+
+<!-- LOGO -->
+<header class="header">
+    <a href="../pages/index.html" class="logo">
+        <img src="../images/logowhite.png" alt="SQUID GAME">
+    </a>
+</header>
+
+<!-- PLAYER WALL -->
+<main class="player-world" id="playerWorld">
+    <div class="player-grid" id="playerGrid"></div>
+</main>
+
+<!-- JOIN BUTTON -->
+<button class="join-button" id="joinButton">
+    BECOME A PLAYER
+</button>
+
+<!-- PHOTO BOOTH -->
+<section class="booth hidden" id="booth">
+
+    <button class="close-button" id="closeButton">&times;</button>
+
+    <div class="booth-content">
+
+        <p class="booth-instruction" id="instruction">
+            PLEASE LOOK INTO THE CAMERA.
+        </p>
+
+        <div class="camera-frame">
+
+            <video id="camera" autoplay playsinline></video>
+
+            <canvas id="canvas" class="hidden"></canvas>
+
+            <img id="photoPreview" class="hidden" alt="Your photo">
+
+            <div class="camera-placeholder" id="cameraPlaceholder">
+                ○
+            </div>
+
+            <div class="camera-flash" id="cameraFlash"></div>
+
+        </div>
+
+        <p class="camera-message" id="cameraMessage">SMILE.</p>
+
+        <div class="booth-buttons" id="cameraButtons">
+
+            <button id="captureButton">TAKE PHOTO</button>
+
+            <label class="upload-button" for="photoUpload">
+                UPLOAD PHOTO
+            </label>
+
+            <input type="file" id="photoUpload" accept="image/*" hidden>
+
+        </div>
+
+        <div class="booth-buttons hidden" id="reviewButtons">
+            <button id="retakeButton">RETAKE</button>
+            <button id="deleteButton">DELETE</button>
+            <button id="confirmButton">CONFIRM</button>
+        </div>
+
+    </div>
+</section>
+
+<!-- PLAYER DOSSIER -->
+<section class="dossier hidden" id="dossier">
+    <div class="dossier-card">
+
+        <button class="dossier-close" id="dossierClose" aria-label="Close">&times;</button>
+
+        <img class="dossier-photo" id="dossierPhoto" alt="">
+
+        <div class="dossier-info">
+            <p class="dossier-label">PLAYER</p>
+            <p class="dossier-number" id="dossierNumber"></p>
+
+            <dl class="dossier-list">
+                <dt>AGE</dt>
+                <dd id="dossierAge"></dd>
+                <dt>OCCUPATION</dt>
+                <dd id="dossierJob"></dd>
+                <dt>STATUS</dt>
+                <dd id="dossierStatus"></dd>
+            </dl>
+        </div>
+
+    </div>
+</section>
+
+<!-- PLAYER NUMBER ANIMATION -->
+<section class="number-screen hidden" id="numberScreen">
+    <p>ASSIGNING PLAYER NUMBER</p>
+    <div class="number-display" id="numberDisplay">000</div>
+</section>
+
+</body>
+</html>

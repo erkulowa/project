@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation</title>
+    <link rel="stylesheet" href="../css/invitation.css">
+    <script src="../js/invitation.js" defer></script>
+
+</head>
+<body>
+
+<main class="scene">
+
+    <!-- INTRO -->
+    <section class="intro" id="intro">
+        <p>Would you like to play a game with me?</p>
+        <button id="startButton">YES</button>
+    </section>
+
+    <!-- GAME -->
+    <section class="game hidden" id="game">
+        <p class="attempt" id="attempt">ROUND 1</p>
+        <p class="score" id="score">YOU 0 : 0 RECRUITER</p>
+
+        <div class="play-area" id="playArea">
+
+            <div class="ttakji blue" id="blueTtakji">
+                <span class="fold fold-one"></span>
+                <span class="fold fold-two"></span>
+                <span class="fold fold-three"></span>
+                <span class="fold fold-four"></span>
+            </div>
+
+            <div class="ttakji red" id="redTtakji">
+                <span class="fold fold-one"></span>
+                <span class="fold fold-two"></span>
+                <span class="fold fold-three"></span>
+                <span class="fold fold-four"></span>
+            </div>
+
+            <p class="impact" id="impact">BAM!</p>
+        </div>
+
+        <p class="game-message" id="gameMessage">
+            Flip the blue square.
+        </p>
+
+        <button class="action-button" id="throwButton">THROW</button>
+    </section>
+
+    <!-- RESULT -->
+    <section class="result hidden" id="result">
+        <h1 id="resultTitle"></h1>
+        <p id="resultText"></p>
+        <button class="action-button hidden" id="cardButton">
+            CLAIM YOUR INVITATION
+        </button>
+        <button class="action-button hidden" id="retryButton">
+            TRY AGAIN
+        </button>
+    </section>
+
+    <!-- GOLDEN CARD -->
+    <section class="invitation hidden" id="invitation">
+
+        <div class="card-scene">
+            <div class="gold-card" id="goldCard">
+
+                <div class="card-face card-front">
+                    <div class="symbols">
+                        <span>○</span>
+                        <span>△</span>
+                        <span>□</span>
+                    </div>
+                </div>
+
+                <div class="card-face card-back">
+                    <p id="invitationCode">1234 5678</p>
+                </div>
+
+            </div>
+        </div>
+
+        <form class="code-form" id="codeForm">
+            <label for="codeInput">
+                Enter your invitation code to join the game
+            </label>
+
+            <div class="input-row">
+                <input
+                        type="text"
+                        id="codeInput"
+                        placeholder="0000 0000"
+                        maxlength="9"
+                        autocomplete="off"
+                        required
+                >
+
+                <button type="submit" aria-label="Submit code">→</button>
+            </div>
+
+            <p id="codeMessage"></p>
+        </form>
+
+    </section>
+
+</main>
+
+</body>
+</html>
